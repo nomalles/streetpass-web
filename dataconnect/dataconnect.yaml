@@ -1,0 +1,12 @@
+specVersion: "v1beta"
+serviceId: "streetpass-web"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "streetpass-web-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]
