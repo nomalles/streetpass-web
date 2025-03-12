@@ -17,6 +17,7 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyD3Op0LTdW9Dq1u1mc_3StyVryATMdEKpc",
   authDomain: "streetpass-web.firebaseapp.com",
+  databaseURL: "https://streetpass-web-default-rtdb.firebaseio.com/",
   projectId: "streetpass-web",
   storageBucket: "streetpass-web.firebasestorage.app",
   messagingSenderId: "162492502670",
@@ -86,11 +87,28 @@ export const updateUserLocation = async (userId, locationData) => {
 
 // Get nearby users based on location grid
 export const listenForNearbyUsers = (locationId, callback) => {
+  console.log("Setting up listener for location:", locationId);
   const nearbyUsersRef = ref(database, `locations/${locationId}/users`);
-  return onValue(nearbyUsersRef, (snapshot) => {
-    const nearbyUsers = snapshot.exists() ? snapshot.val() : {};
-    callback(nearbyUsers);
-  });
+  
+  try {
+    // Immediately return an empty object if no data exists yet
+    const unsubscribe = onValue(nearbyUsersRef, (snapshot) => {
+      console.log("Received snapshot:", snapshot.exists());
+      const nearbyUsers = snapshot.exists() ? snapshot.val() : {};
+      callback(nearbyUsers);
+    }, (error) => {
+      console.error("Error in nearbyUsers listener:", error);
+      // Call callback with empty object on error
+      callback({});
+    });
+    
+    return unsubscribe;
+  } catch (error) {
+    console.error("Exception in listenForNearbyUsers:", error);
+    // Return a no-op function if setup fails
+    callback({});
+    return () => {};
+  }
 };
 
 // Add user to a location grid

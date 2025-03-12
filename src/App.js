@@ -11,9 +11,12 @@ import SavePanel from './components/SavePanel';
 import { signInAnonymousUser } from './services/firebase';
 import { getEncounterCount } from './utils/storage';
 
+import { getDatabase, ref, set, get } from 'firebase/database';
+
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [activeTab, setActiveTab] = useState('nearby'); // 'nearby', 'customize', 'interactions'
+  
+  // State
+  const [activeTab, setActiveTab] = useState('nearby');
   const [selectedUser, setSelectedUser] = useState(null);
   const [encounterCount, setEncounterCount] = useState(0);
   
@@ -25,7 +28,7 @@ function App() {
     getShareableUrl 
   } = useAvatar();
   
-  // Get location data
+  // Only proceed with location and nearby users once avatar is loaded
   const { 
     location, 
     locationGrid, 
@@ -39,33 +42,60 @@ function App() {
     loading: usersLoading 
   } = useNearbyUsers(
     locationGrid, 
-    avatarData && { 
+    avatarData && !avatarLoading ? { 
       ...avatarData,
       lastActive: new Date().toISOString() 
-    }
+    } : null
   );
+
+  useEffect(() => {
+    const testFirebase = async () => {
+      try {
+        const db = getDatabase();
+        const testRef = ref(db, 'test');
+        await set(testRef, { timestamp: Date.now() });
+        const snapshot = await get(testRef);
+        console.log("Firebase test successful:", snapshot.val());
+        return true;
+      } catch (error) {
+        console.error("Firebase test failed:", error);
+        return false;
+      }
+    };
+
+    testFirebase();
+  }, []);
   
-  // Authentication effect
+  // Authentication effect - this runs once on component mount
   useEffect(() => {
     const authenticate = async () => {
-      const user = await signInAnonymousUser();
-      setIsAuthenticated(user !== null);
+      try {
+        await signInAnonymousUser();
+        console.log("Authentication completed");
+      } catch (error) {
+        console.error("Authentication error:", error);
+      }
     };
     
     authenticate();
   }, []);
   
-  // Update encounter count effect
+  // Update encounter count - only run when nearbyUsers is actually changed
   useEffect(() => {
-    setEncounterCount(getEncounterCount());
-    
-    // Update count every time nearby users change
+    if (!usersLoading) {
+      console.log("Updating encounter count");
+      setEncounterCount(getEncounterCount());
+    }
+  }, [usersLoading, nearbyUsers]);
+  
+  // Periodic update interval - separate from the nearbyUsers dependency
+  useEffect(() => {
     const interval = setInterval(() => {
       setEncounterCount(getEncounterCount());
     }, 5000);
     
     return () => clearInterval(interval);
-  }, [nearbyUsers]);
+  }, []);
   
   // Handle user selection for interaction
   const handleUserSelect = (userId) => {
@@ -73,8 +103,26 @@ function App() {
     setActiveTab('interactions');
   };
   
+  // Debug logs
+  console.log("Avatar loading:", avatarLoading);
+  console.log("Location loading:", locationLoading);
+  console.log("Users loading:", usersLoading);
+  console.log("Location grid:", locationGrid);
+  console.log("Avatar data:", avatarData);
+  
   // Loading state
-  const isLoading = avatarLoading || locationLoading || usersLoading;
+  const [forceLoaded, setForceLoaded] = useState(false);
+  const isLoading = (avatarLoading || locationLoading || usersLoading) && !forceLoaded;
+
+  useEffect(() => {
+    // Force progress after a short delay
+    const forceTimeout = setTimeout(() => {
+      setForceLoaded(true);
+      console.log("Forcing app to loaded state");
+    }, 8000); // 8 seconds
+    
+    return () => clearTimeout(forceTimeout);
+  }, []);
   
   return (
     <ChakraProvider>
@@ -83,6 +131,11 @@ function App() {
           <VStack spacing={4} align="center" justify="center" height="100vh">
             <Spinner size="xl" thickness="4px" speed="0.65s" color="blue.500" />
             <Text>Loading your experience...</Text>
+            <Text fontSize="sm" color="gray.500">
+              {avatarLoading && "Loading avatar..."}
+              {!avatarLoading && locationLoading && "Waiting for location..."}
+              {!avatarLoading && !locationLoading && usersLoading && "Checking for nearby users..."}
+            </Text>
           </VStack>
         ) : (
           <VStack spacing={4} align="stretch">
