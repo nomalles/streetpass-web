@@ -1,0 +1,28 @@
+{
+  "short_name": "Oh Hey!",
+  "name": "Oh Hey! - GDC StreetPass",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3182CE",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "description": "Meet other GDC attendees nearby with this StreetPass-like app",
+  "categories": ["social", "games", "networking"]
+}
