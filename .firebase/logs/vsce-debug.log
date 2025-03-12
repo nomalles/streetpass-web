@@ -1,0 +1,34 @@
+[debug] [2025-03-12T04:27:28.237Z] [Firebase Plugin] Activating Firebase extension.
+[info] [Firebase Plugin] Checked firebase-tools, is up to date!
+[debug] [2025-03-12T04:27:29.901Z] [Firebase Plugin] VSCode notification server listening on port 40001
+[info] [Firebase Plugin] Starting Data Connect toolkit (version 1.8.4) on port 50001
+[debug] [2025-03-12T04:27:30.407Z] I0311 21:27:30.403957   89894 control.go:59] [/emulator/streetpass-web b089] UpdateResources(): done
+Schema: sources: schema/schema.gql [2088B] 
+Connector "default": sources: connector/mutations.gql [1233B] connector/queries.gql [1802B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.403957   89894 control.go:59] [/emulator/streetpass-web b089] UpdateResources(): done\nSchema: sources: schema/schema.gql [2088B] \nConnector \"default\": sources: connector/mutations.gql [1233B] connector/queries.gql [1802B] \n"}}
+[debug] [2025-03-12T04:27:30.408Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2025-03-12T04:27:30.408Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"dataconnect"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2025-03-12T04:27:30.408Z] Starting Data Connect Emulator with command {"binary":"/Users/nickomalley/.cache/firebase/emulators/dataconnect-emulator-1.8.4","args":["--logtostderr","-v=2","dev","--listen=localhost:50001","--config_dir=/Users/nickomalley/Documents/streetpass-web/dataconnect","--enable_output_schema_extensions=true","--enable_output_generated_sdk=true"],"optionalArgs":["listen","config_dir","enable_output_schema_extensions","enable_output_generated_sdk"],"joinArgs":true,"shell":false,"port":9399} {"metadata":{"emulator":{"name":"dataconnect"},"message":"Starting Data Connect Emulator with command {\"binary\":\"/Users/nickomalley/.cache/firebase/emulators/dataconnect-emulator-1.8.4\",\"args\":[\"--logtostderr\",\"-v=2\",\"dev\",\"--listen=localhost:50001\",\"--config_dir=/Users/nickomalley/Documents/streetpass-web/dataconnect\",\"--enable_output_schema_extensions=true\",\"--enable_output_generated_sdk=true\"],\"optionalArgs\":[\"listen\",\"config_dir\",\"enable_output_schema_extensions\",\"enable_output_generated_sdk\"],\"joinArgs\":true,\"shell\":false,\"port\":9399}"}}
+[info] i  dataconnect: Data Connect Emulator logging to dataconnect-debug.log {"metadata":{"emulator":{"name":"dataconnect"},"message":"Data Connect Emulator logging to dataconnect-debug.log"}}
+[debug] [2025-03-12T04:27:30.571Z] I0311 21:27:30.568826   89895 load.go:37] Reloading schema and connectors...
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.568826   89895 load.go:37] Reloading schema and connectors...\n"}}
+[debug] [2025-03-12T04:27:30.599Z] I0311 21:27:30.598869   89895 control.go:59] [/emulator/streetpass-web ce1b] UpdateResources(): done
+Schema: sources: schema/schema.gql [2088B] 
+Connector "default": sources: connector/mutations.gql [1233B] connector/queries.gql [1802B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.598869   89895 control.go:59] [/emulator/streetpass-web ce1b] UpdateResources(): done\nSchema: sources: schema/schema.gql [2088B] \nConnector \"default\": sources: connector/mutations.gql [1233B] connector/queries.gql [1802B] \n"}}
+[debug] [2025-03-12T04:27:30.614Z] I0311 21:27:30.614165   89895 codegen.go:82] [connector "default" javascriptSdk] Generating sources into "/Users/nickomalley/Documents/streetpass-web/dataconnect-generated/js/default-connector"
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.614165   89895 codegen.go:82] [connector \"default\" javascriptSdk] Generating sources into \"/Users/nickomalley/Documents/streetpass-web/dataconnect-generated/js/default-connector\"\n"}}
+[debug] [2025-03-12T04:27:30.624Z] I0311 21:27:30.624603   89895 collector.go:107] schema extensions wrote into "/Users/nickomalley/Documents/streetpass-web/dataconnect/.dataconnect/schema"
+Generated sources: prelude.gql [67020B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.624603   89895 collector.go:107] schema extensions wrote into \"/Users/nickomalley/Documents/streetpass-web/dataconnect/.dataconnect/schema\"\nGenerated sources: prelude.gql [67020B] \n"}}
+[debug] [2025-03-12T04:27:30.626Z] I0311 21:27:30.626424   89895 collector.go:107] connector "default" javascriptSdk wrote into "/Users/nickomalley/Documents/streetpass-web/dataconnect-generated/js/default-connector"
+Generated sources: README.md [2800B] index.d.ts [246B] esm/index.esm.js [117B] esm/package.json [17B] index.cjs.js [153B] package.json [634B] 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.626424   89895 collector.go:107] connector \"default\" javascriptSdk wrote into \"/Users/nickomalley/Documents/streetpass-web/dataconnect-generated/js/default-connector\"\nGenerated sources: README.md [2800B] index.d.ts [246B] esm/index.esm.js [117B] esm/package.json [17B] index.cjs.js [153B] package.json [634B] \n"}}
+[debug] [2025-03-12T04:27:30.629Z] I0311 21:27:30.629113   89895 installsdk.go:48] Package @firebasegen/default-connector is already installed. Skipping installation
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.629113   89895 installsdk.go:48] Package @firebasegen/default-connector is already installed. Skipping installation\n"}}
+[debug] [2025-03-12T04:27:30.629Z] I0311 21:27:30.629347   89895 load.go:115] Finished reloading
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.629347   89895 load.go:115] Finished reloading\n"}}
+[debug] [2025-03-12T04:27:30.635Z] I0311 21:27:30.635208   89895 dev.go:95] Listening on address (HTTP + gRPC): 127.0.0.1:50001
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.635208   89895 dev.go:95] Listening on address (HTTP + gRPC): 127.0.0.1:50001\n"}}
+[debug] [2025-03-12T04:27:30.703Z] I0311 21:27:30.703300   89895 engine.go:148] [/emulator/streetpass-web ce1b] ExecuteGraphqlRead IntrospectionQuery: succeeded. 
+ {"metadata":{"emulator":{"name":"dataconnect"},"message":"I0311 21:27:30.703300   89895 engine.go:148] [/emulator/streetpass-web ce1b] ExecuteGraphqlRead IntrospectionQuery: succeeded. \n"}}

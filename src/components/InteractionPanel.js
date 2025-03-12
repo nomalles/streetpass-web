@@ -8,9 +8,7 @@ import {
   Avatar, 
   Heading,
   Grid,
-  Badge,
-  Icon,
-  useToast
+  Badge
 } from '@chakra-ui/react';
 import { ChevronLeftIcon } from '@chakra-ui/icons';
 
@@ -35,7 +33,6 @@ const greetings = [
 ];
 
 const InteractionPanel = ({ userData, onBack }) => {
-  const toast = useToast();
   const [selectedReaction, setSelectedReaction] = useState(null);
   const [selectedGreeting, setSelectedGreeting] = useState(null);
   
@@ -68,30 +65,12 @@ const InteractionPanel = ({ userData, onBack }) => {
   
   const handleReaction = (index) => {
     setSelectedReaction(index);
-    
-    // In a full implementation, this would send the reaction to Firebase
-    // For now, just show a toast notification
-    toast({
-      title: `Sent ${reactions[index].emoji}`,
-      description: `You sent ${reactions[index].label} to ${userData.name || 'Anonymous'}`,
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    });
+    alert(`Sent ${reactions[index].emoji} to ${userData.name || 'Anonymous'}`);
   };
   
   const handleGreeting = (index) => {
     setSelectedGreeting(index);
-    
-    // In a full implementation, this would send the greeting to Firebase
-    // For now, just show a toast notification
-    toast({
-      title: 'Greeting sent!',
-      description: `You sent "${greetings[index]}" to ${userData.name || 'Anonymous'}`,
-      status: 'success',
-      duration: 3000,
-      isClosable: true,
-    });
+    alert(`Sent "${greetings[index]}" to ${userData.name || 'Anonymous'}`);
   };
   
   return (

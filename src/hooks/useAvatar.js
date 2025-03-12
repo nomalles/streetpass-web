@@ -22,7 +22,7 @@ const defaultAvatarData = {
   created: new Date().toISOString()
 };
 
-export const useAvatar = () => {
+const useAvatar = () => {
   const [avatarData, setAvatarData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -118,3 +118,5 @@ export const useAvatar = () => {
     getShareableUrl
   };
 };
+
+export default useAvatar;

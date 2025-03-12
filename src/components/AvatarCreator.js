@@ -6,13 +6,8 @@ import {
   Heading, 
   Text, 
   Button, 
-  Input, 
-  FormControl, 
-  FormLabel,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb
+  Input,
+  FormLabel
 } from '@chakra-ui/react';
 
 // Hair styles and accessories options
@@ -20,11 +15,11 @@ const hairStyles = ['Short', 'Medium', 'Long', 'Curly', 'Bald'];
 const accessories = ['None', 'Glasses', 'Hat', 'Headphones', 'Mask'];
 
 const AvatarCreator = ({ avatarData, onUpdate }) => {
-  const [name, setName] = useState(avatarData.name || '');
-  const [skinColor, setSkinColor] = useState(avatarData.skinColor || '#E0AC69');
-  const [hairStyle, setHairStyle] = useState(avatarData.hairStyle || 0);
-  const [hairColor, setHairColor] = useState(avatarData.hairColor || '#3D2314');
-  const [accessory, setAccessory] = useState(avatarData.accessory || 0);
+  const [name, setName] = useState(avatarData?.name || '');
+  const [skinColor, setSkinColor] = useState(avatarData?.skinColor || '#E0AC69');
+  const [hairStyle, setHairStyle] = useState(avatarData?.hairStyle || 0);
+  const [hairColor, setHairColor] = useState(avatarData?.hairColor || '#3D2314');
+  const [accessory, setAccessory] = useState(avatarData?.accessory || 0);
   
   // Save all changes
   const handleSave = () => {
@@ -50,7 +45,7 @@ const AvatarCreator = ({ avatarData, onUpdate }) => {
     <VStack spacing={6} align="stretch">
       <Heading size="md">Customize Your Avatar</Heading>
       
-      <FormControl>
+      <Box>
         <FormLabel>Your Name</FormLabel>
         <Input 
           value={name} 
@@ -58,9 +53,9 @@ const AvatarCreator = ({ avatarData, onUpdate }) => {
           placeholder="Enter your name"
           maxLength={20}
         />
-      </FormControl>
+      </Box>
       
-      <FormControl>
+      <Box>
         <FormLabel>Skin Tone</FormLabel>
         <HStack>
           <input 
@@ -78,16 +73,16 @@ const AvatarCreator = ({ avatarData, onUpdate }) => {
             borderColor="gray.200"
           />
         </HStack>
-      </FormControl>
+      </Box>
       
-      <FormControl>
+      <Box>
         <FormLabel>Hair Style: {hairStyles[hairStyle]}</FormLabel>
         <Button onClick={cycleHairStyle} w="100%">
           Change Hair Style
         </Button>
-      </FormControl>
+      </Box>
       
-      <FormControl>
+      <Box>
         <FormLabel>Hair Color</FormLabel>
         <HStack>
           <input 
@@ -105,14 +100,14 @@ const AvatarCreator = ({ avatarData, onUpdate }) => {
             borderColor="gray.200"
           />
         </HStack>
-      </FormControl>
+      </Box>
       
-      <FormControl>
+      <Box>
         <FormLabel>Accessory: {accessories[accessory]}</FormLabel>
         <Button onClick={cycleAccessory} w="100%">
           Change Accessory
         </Button>
-      </FormControl>
+      </Box>
       
       <Button 
         colorScheme="blue" 

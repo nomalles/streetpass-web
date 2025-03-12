@@ -17,7 +17,6 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyD3Op0LTdW9Dq1u1mc_3StyVryATMdEKpc",
   authDomain: "streetpass-web.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
   projectId: "streetpass-web",
   storageBucket: "streetpass-web.firebasestorage.app",
   messagingSenderId: "162492502670",

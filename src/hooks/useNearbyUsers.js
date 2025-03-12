@@ -6,7 +6,7 @@ import {
 } from '../services/firebase';
 import { saveEncounter } from '../utils/storage';
 
-export const useNearbyUsers = (locationGrid, userData) => {
+const useNearbyUsers = (locationGrid, userData) => {
   const [nearbyUsers, setNearbyUsers] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -59,3 +59,5 @@ export const useNearbyUsers = (locationGrid, userData) => {
   
   return { nearbyUsers, loading, error };
 };
+
+export default useNearbyUsers;

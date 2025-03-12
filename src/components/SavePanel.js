@@ -5,16 +5,13 @@ import {
   Text, 
   Input, 
   HStack,
-  useToast,
-  useClipboard,
-  Collapse
+  useClipboard
 } from '@chakra-ui/react';
 
 const SavePanel = ({ getShareableUrl }) => {
   const [isOpen, setIsOpen] = useState(false);
   const shareableUrl = getShareableUrl ? getShareableUrl() : null;
   const { hasCopied, onCopy } = useClipboard(shareableUrl || '');
-  const toast = useToast();
   
   const handleShare = () => {
     if (navigator.share) {
@@ -27,23 +24,12 @@ const SavePanel = ({ getShareableUrl }) => {
       .catch((error) => console.log('Error sharing', error));
     } else {
       onCopy();
-      toast({
-        title: 'Link copied to clipboard!',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      });
+      alert('Link copied to clipboard!');
     }
   };
   
   const handleSaveToHome = () => {
-    toast({
-      title: 'Add to Home Screen',
-      description: 'Look for "Add to Home Screen" option in your browser menu!',
-      status: 'info',
-      duration: 5000,
-      isClosable: true,
-    });
+    alert('Add to Home Screen: Look for "Add to Home Screen" option in your browser menu!');
     setIsOpen(false);
   };
   
@@ -60,7 +46,7 @@ const SavePanel = ({ getShareableUrl }) => {
         </Button>
       </HStack>
       
-      <Collapse in={isOpen} animateOpacity>
+      {isOpen && (
         <Box mt={4} p={4} bg="white" borderRadius="md" borderWidth="1px">
           <Text mb={3}>
             Save your avatar to use it again later or on another device:
@@ -103,7 +89,7 @@ const SavePanel = ({ getShareableUrl }) => {
             </>
           )}
         </Box>
-      </Collapse>
+      )}
     </Box>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ChakraProvider, Box, VStack, HStack, Text, Heading, Spinner } from '@chakra-ui/react';
-import { useGeolocation } from './hooks/useGeolocation';
-import { useAvatar } from './hooks/useAvatar';
-import { useNearbyUsers } from './hooks/useNearbyUsers';
+import useGeolocation from './hooks/useGeolocation';
+import useAvatar from './hooks/useAvatar';
+import useNearbyUsers from './hooks/useNearbyUsers';
 import AvatarCreator from './components/AvatarCreator';
 import AvatarViewer from './components/AvatarViewer';
 import NearbyUsers from './components/NearbyUsers';
@@ -88,9 +88,9 @@ function App() {
           <VStack spacing={4} align="stretch">
             {/* Header */}
             <Box p={4} bg="white" borderRadius="md" boxShadow="sm">
-              <Heading size="md">GDC StreetPass</Heading>
+              <Heading size="md">Oh Hey! - GDC StreetPass</Heading>
               <Text fontSize="sm" color="gray.500">
-                Encounters: {encounterCount} | Nearby: {Object.keys(nearbyUsers).length}
+                Encounters: {encounterCount} | Nearby: {Object.keys(nearbyUsers || {}).length}
               </Text>
               {locationError && (
                 <Text color="red.500" fontSize="sm">
@@ -103,7 +103,7 @@ function App() {
             <Box p={4} bg="white" borderRadius="md" boxShadow="sm" flex="1">
               {activeTab === 'nearby' && (
                 <NearbyUsers 
-                  users={nearbyUsers} 
+                  users={nearbyUsers || {}} 
                   onSelectUser={handleUserSelect} 
                 />
               )}
@@ -117,7 +117,7 @@ function App() {
               
               {activeTab === 'interactions' && selectedUser && (
                 <InteractionPanel 
-                  userData={nearbyUsers[selectedUser]} 
+                  userData={nearbyUsers?.[selectedUser] || {}} 
                   onBack={() => setActiveTab('nearby')} 
                 />
               )}

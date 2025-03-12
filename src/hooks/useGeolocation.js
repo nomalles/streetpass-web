@@ -55,3 +55,5 @@ export const useGeolocation = (options = {}) => {
   
   return { location, locationGrid, error, loading };
 };
+
+export default useGeolocation;
